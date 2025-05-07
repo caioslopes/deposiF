@@ -22,6 +22,5 @@ public class Produto {
 
     @OneToMany
     @JoinColumn(name = "setor_id")
-    @MapsId
     private Setor setor;
 }
