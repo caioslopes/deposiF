@@ -1,5 +1,6 @@
 package br.edu.ifsp.deposif.web;
 
+import br.edu.ifsp.deposif.persistence.IProdutoRepositorio;
 import br.edu.ifsp.deposif.model.Produto;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
@@ -13,13 +14,21 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/produto")
 public class ProdutoController {
 
+    private final IProdutoRepositorio iProdutoRepositorio;
+
+    public ProdutoController(IProdutoRepositorio iProdutoRepositorio) {
+        this.iProdutoRepositorio = iProdutoRepositorio;
+    }
+
     @ModelAttribute("produto")
     public Produto produto(){
         return new Produto();
     }
 
 
+    @GetMapping("/listagem")
     public String listagem(Model model){
+        model.addAttribute("listaDeProdutos", iProdutoRepositorio.findAll());
         return "produto-listagem";
     }
 

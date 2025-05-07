@@ -8,6 +8,26 @@
     <title>Produtos</title>
 </head>
 <body>
-
+    <h1>Produtos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th>Cargo</th>
+                <th>Altura</th>
+                <th>Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="produto : ${listaDeProdutos}">
+                <td><span th:text="${produto.id}"></span></td>
+                <td><span th:text="${produto.descricao}"></span></td>
+                <td><span th:text="${produto.descricao}"></span></td>
+                <td><span th:text="${#numbers.formatDecimal(produto.quantidade,1,4,'COMMA')}"></span></td>
+                <td><span th:text="${produto.setor.descricao}"></span></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
