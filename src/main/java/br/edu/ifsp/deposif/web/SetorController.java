@@ -1,9 +1,11 @@
 package br.edu.ifsp.deposif.web;
 
 import br.edu.ifsp.deposif.model.Setor;
+import br.edu.ifsp.deposif.persistence.ISetorRepositorio;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/setor")
 public class SetorController {
 
+    private final ISetorRepositorio iSetorRepositorio;
+
+    public SetorController(ISetorRepositorio iSetorRepositorio) {
+        this.iSetorRepositorio = iSetorRepositorio;
+    }
+
     @ModelAttribute("setor")
     public Setor setor(){
         return new Setor();
+    }
+
+    @GetMapping("/listar")
+    public String listar(Model model){
+        model.addAttribute("setor", iSetorRepositorio.findAll());
+        return "setor-listar";
     }
 
     @GetMapping("/cadastrar")

@@ -12,18 +12,18 @@
     <table>
         <thead>
             <tr>
-                <th>Matrícula</th>
-                <th>Nome</th>
-                <th>Cargo</th>
-                <th>Altura</th>
-                <th>Departamento</th>
+                <th>Id</th>
+                <th>Descrição</th>
+                <th>Descriçao técnica</th>
+                <th>Estoque</th>
+                <th>Setor</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="produto : ${listaDeProdutos}">
                 <td><span th:text="${produto.id}"></span></td>
                 <td><span th:text="${produto.descricao}"></span></td>
-                <td><span th:text="${produto.descricao}"></span></td>
+                <td><span th:text="${produto.descricaoTecnica}"></span></td>
                 <td><span th:text="${#numbers.formatDecimal(produto.quantidade,1,4,'COMMA')}"></span></td>
                 <td><span th:text="${produto.setor.descricao}"></span></td>
             </tr>
