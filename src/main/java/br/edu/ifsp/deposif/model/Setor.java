@@ -12,7 +12,6 @@ import lombok.Data;
 @Table(name = "setor")
 public class Setor {
     @Id
-    @Column(name = "setor_id")
     private Long id;
 
     @NotBlank(message = "Informe a descrição")

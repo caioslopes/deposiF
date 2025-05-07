@@ -9,7 +9,6 @@ import lombok.Data;
 @Table(name = "produto")
 public class Produto {
     @Id
-    @Column(name = "produto_id")
     private Long id;
 
     @NotBlank(message = "Informe a descrição")
