@@ -14,6 +14,6 @@ public class Setor {
     @Id
     private Long id;
 
-    @NotBlank(message = "Informe a descrição")
+    @NotBlank(message = "Informe a descrição.")
     private String descricao;
 }
