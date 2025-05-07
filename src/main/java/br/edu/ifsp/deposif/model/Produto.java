@@ -22,7 +22,7 @@ public class Produto {
     @NotNull(message = "Informe a quantidade.")
     private int quantidade;
 
-    @OneToMany
-    @JoinColumn(name = "setor_id")
-    private Setor setor;
+//    @OneToMany
+//    @JoinColumn(name = "id")
+//    private Setor setor;
 }

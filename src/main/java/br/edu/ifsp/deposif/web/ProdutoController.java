@@ -25,11 +25,10 @@ public class ProdutoController {
         return new Produto();
     }
 
-
-    @GetMapping("/listagem")
-    public String listagem(Model model){
+    @GetMapping("/listar")
+    public String listar(Model model){
         model.addAttribute("listaDeProdutos", iProdutoRepositorio.findAll());
-        return "produto-listagem";
+        return "produto-listar";
     }
 
     @GetMapping("/cadastrar")
@@ -48,6 +47,6 @@ public class ProdutoController {
 
 //        produtorRepo.save(produto);
 
-        return "produto-listagem";
+        return "produto-listar";
     }
 }
