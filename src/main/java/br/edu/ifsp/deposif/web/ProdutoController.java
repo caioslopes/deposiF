@@ -1,20 +1,24 @@
 package br.edu.ifsp.deposif.web;
 
+import br.edu.ifsp.deposif.persistence.IProdutoRepositorio;
 import br.edu.ifsp.deposif.model.Produto;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Slf4j
 @Controller
 @RequestMapping("/produto")
 public class ProdutoController {
+
+    private final IProdutoRepositorio iProdutoRepositorio;
+
+    public ProdutoController(IProdutoRepositorio iProdutoRepositorio) {
+        this.iProdutoRepositorio = iProdutoRepositorio;
+    }
 
     @ModelAttribute("produto")
     public Produto produto(){
@@ -22,7 +26,9 @@ public class ProdutoController {
     }
 
 
+    @GetMapping("/listagem")
     public String listagem(Model model){
+        model.addAttribute("listaDeProdutos", iProdutoRepositorio.findAll());
         return "produto-listagem";
     }
 
