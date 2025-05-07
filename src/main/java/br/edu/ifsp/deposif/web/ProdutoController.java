@@ -2,6 +2,7 @@ package br.edu.ifsp.deposif.web;
 
 import br.edu.ifsp.deposif.persistence.IProdutoRepositorio;
 import br.edu.ifsp.deposif.model.Produto;
+import br.edu.ifsp.deposif.persistence.ISetorRepositorio;
 import jakarta.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,11 @@ import lombok.extern.slf4j.Slf4j;
 public class ProdutoController {
 
     private final IProdutoRepositorio iProdutoRepositorio;
+    private final ISetorRepositorio iSetorRepositorio;
 
-    public ProdutoController(IProdutoRepositorio iProdutoRepositorio) {
+    public ProdutoController(IProdutoRepositorio iProdutoRepositorio, ISetorRepositorio iSetorRepositorio) {
         this.iProdutoRepositorio = iProdutoRepositorio;
+        this.iSetorRepositorio = iSetorRepositorio;
     }
 
     @ModelAttribute("produto")
@@ -33,7 +36,8 @@ public class ProdutoController {
     }
 
     @GetMapping("/cadastrar")
-    public String cadastro(){
+    public String cadastro(Model model){
+        model.addAttribute("listaDeSetores", iSetorRepositorio.findAll());
         return "produto-cadastrar";
     }
 
@@ -42,11 +46,10 @@ public class ProdutoController {
         if (errors.hasErrors())
             log.info("Erro no cadastro de produto: {}", errors.getAllErrors());
 
-//        setorRepo.findById(setorId).ifPresent(produto :: setSetor);
+        iSetorRepositorio.findById(setorId).ifPresent(produto :: setSetor);
 
         log.info("Produto sendo cadastrado: {}", produto);
-
-//        produtorRepo.save(produto);
+        iProdutoRepositorio.save(produto);
 
         return "produto-listagem";
     }

@@ -8,6 +8,31 @@
     <title>Cadastro de produto</title>
 </head>
 <body>
+  <main>
+    <h1>Cadastro de produto</h1>
+    <form th:action="@{/produtos/cadastrar}" method="post" th:object="${produto}">
 
+      <label>
+        <input type="text" name="descricao">
+      </label>
+
+      <label>
+        <input type="text" name="descricaoTecnica">
+      </label>
+
+      <label>
+        <select name="setorId" class="select" required>
+          <option value="" disabled selected>Selecione o setor</option>
+          <option th:each="setor : ${listaDeSetores}" th:value="${setor.id}" th:text="${setor.descricao}"></option>
+        </select>
+      </label>
+
+      <label>
+        <input type="text" name="quantidade">
+      </label>
+
+      <button type="submit" value="Cadastrar">
+    </form>
+  </main>
 </body>
 </html>
