@@ -45,7 +45,7 @@ public class ProdutoController {
         if (errors.hasErrors())
             log.info("Erro no cadastro de produto: {}", errors.getAllErrors());
 
-        iSetorRepositorio.findById(setorId).ifPresent(produto :: setSetor);
+//        iSetorRepositorio.findById(setorId).ifPresent(produto :: setSetor);
 
         log.info("Produto sendo cadastrado: {}", produto);
         iProdutoRepositorio.save(produto);

@@ -13,11 +13,11 @@
     <form th:action="@{/produtos/cadastrar}" method="post" th:object="${produto}">
 
       <label>
-        <input type="text" name="descricao">
+        <input type="text" name="descricao" placeholder="Descrição...">
       </label>
 
       <label>
-        <input type="text" name="descricaoTecnica">
+        <input type="text" name="descricaoTecnica" placeholder="Descrição Técnica...">
       </label>
 
       <label>
@@ -31,7 +31,7 @@
         <input type="text" name="quantidade">
       </label>
 
-      <button type="submit" value="Cadastrar">
+      <button type="submit" value="Cadastrar">Cadastrar</button>
     </form>
   </main>
 </body>
