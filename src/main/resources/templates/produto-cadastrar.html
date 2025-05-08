@@ -10,7 +10,7 @@
 <body>
   <main>
     <h1>Cadastro de produto</h1>
-    <form th:action="@{/produtos/cadastrar}" method="post" th:object="${produto}">
+    <form th:action="@{/produto/cadastrar}" method="post" th:object="${produto}">
 
       <label>
         <input type="text" name="descricao" placeholder="Descrição...">
@@ -28,7 +28,7 @@
       </label>
 
       <label>
-        <input type="text" name="quantidade">
+        <input type="text" name="quantidade" placeholder="Quantidade...">
       </label>
 
       <button type="submit" value="Cadastrar">Cadastrar</button>
