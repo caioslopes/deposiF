@@ -24,32 +24,33 @@ public class ProdutoController {
     }
 
     @ModelAttribute("produto")
-    public Produto produto(){
+    public Produto produto() {
         return new Produto();
     }
 
     @GetMapping("/listar")
-    public String listar(Model model){
+    public String listar(Model model) {
         model.addAttribute("listaDeProdutos", iProdutoRepositorio.findAll());
         return "produto-listar";
     }
 
     @GetMapping("/cadastrar")
-    public String cadastro(Model model){
+    public String cadastro(Model model) {
         model.addAttribute("listaDeSetores", iSetorRepositorio.findAll());
         return "produto-cadastrar";
     }
 
     @PostMapping("/cadastrar")
-    public String cadastro(@Valid Produto produto, @RequestParam("setorId") Long setorId, Errors  errors){
+    public String cadastro(@Valid Produto produto, @RequestParam("setorId") Long setorId, Errors errors) {
         if (errors.hasErrors())
             log.info("Erro no cadastro de produto: {}", errors.getAllErrors());
 
-        iSetorRepositorio.findById(setorId).ifPresent(produto :: setSetor);
+        iSetorRepositorio.findById(setorId).ifPresent(produto::setSetor);
 
         log.info("Produto sendo cadastrado: {}", produto);
         iProdutoRepositorio.save(produto);
 
         return "redirect:/produto/listar";
     }
+
 }
