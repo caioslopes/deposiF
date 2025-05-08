@@ -30,7 +30,7 @@ public class SetorController {
 
     @GetMapping("/listar")
     public String listar(Model model){
-        model.addAttribute("setor", iSetorRepositorio.findAll());
+        model.addAttribute("listaDeSetores", iSetorRepositorio.findAll());
         return "setor-listar";
     }
 
