@@ -26,6 +26,6 @@ public class Produto {
     private int quantidade;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "setor_id")
     private Setor setor;
 }
