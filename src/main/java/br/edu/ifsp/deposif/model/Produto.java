@@ -4,12 +4,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "produto")
+@ToString(exclude = "setor")
 public class Produto {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "produto_id")
     private Long id;
 
@@ -22,7 +25,7 @@ public class Produto {
     @NotNull(message = "Informe a quantidade.")
     private int quantidade;
 
-//    @OneToMany
-//    @JoinColumn(name = "id")
-//    private Setor setor;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Setor setor;
 }
