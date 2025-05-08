@@ -35,21 +35,21 @@ public class SetorController {
     }
 
     @GetMapping("/cadastrar")
-    public String cadastrar(){
+    public String cadastrar(Model model){
+        model.addAttribute("setor", new Setor());
         return "setor-cadastrar";
     }
 
     @PostMapping("/cadastrar")
     public String cadastrar(@Valid Setor setor, Errors errors){
-        if (errors.hasErrors())
+        if (errors.hasErrors()){
             log.info("Erro no cadastro de setor: {}", errors.getAllErrors());
+        }
 
         log.info("Setor sendo cadastrado: {}", setor);
-//        setorRepo.save(setor);
+        iSetorRepositorio.save(setor);
 
-        return "setor-cadastrar";
+        return "redirect:/setor/listar";
     }
-
-
 
 }

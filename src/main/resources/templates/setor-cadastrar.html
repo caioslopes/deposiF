@@ -8,6 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-
+<h1>Cadastro de setor</h1>
+<form th:action="@{/setor/cadastrar}" method="post" th:object="${setor}">
+    <div>
+        <label for="descricao">Descrição</label>
+        <input type="text" id="descricao" name="descricao" th:field="*{descricao}" required />
+    </div>
+    <div>
+        <button type="reset">Limpar</button>
+        <button type="submit">Cadastrar</button>
+    </div>
+</form>
 </body>
 </html>
